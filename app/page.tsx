@@ -25,6 +25,12 @@ export default function Page() {
     setError("");
   };
 
+  const deleteItem = (indexToDelete: number) => {
+    const newItems = items.filter((_, index) => index !== indexToDelete);
+    setItems(newItems);
+    setError("");
+  };
+
   return (
     <div style={{ padding: 20 }}>
       <h1>会議室予約（仮）</h1>
@@ -45,7 +51,15 @@ export default function Page() {
 
       <ul>
         {items.map((item, i) => (
-          <li key={i}>{item}</li>
+          <li key={i}>
+            {item}
+            <button
+              onClick={() => deleteItem(i)}
+              style={{ marginLeft: 10 }}
+            >
+              削除
+            </button>
+          </li>
         ))}
       </ul>
     </div>
